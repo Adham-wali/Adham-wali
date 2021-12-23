@@ -1,0 +1,36 @@
+#include<iostream>
+int* shiftArray(int* M, int n, int k) {
+    int* Final = new int[n];
+    if (k > n)
+        k %= n;
+    for (int i = 0; i < n; ++i) {
+        if (i < k) {
+            Final[n - k + i] = M[i];
+        }
+        else {
+            Final[i - k] = M[i];
+        }
+    }
+    return Final;
+}
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    int n, step;
+    std::cout << "Введите количество элементов массива и сдвиг: " << std::endl;
+    std::cin >> n >> step;
+    int* arr = new int[n];
+
+    for (int i = 0; i < n; ++i)
+        std::cin >> arr[i];
+
+    int* shifted = shiftArray(arr, n, step);
+
+    std::cout << "Полученный массив со сдвигом: ";
+    for (int i = 0; i < n; ++i)
+        std::cout << shifted[i] << " ";
+
+    delete[] arr;
+    delete[] shifted;
+    return 0;
+}
